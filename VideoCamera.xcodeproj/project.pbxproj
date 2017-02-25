@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		AFDEEA9D1E62201700C055BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEA9C1E62201700C055BC /* AppDelegate.swift */; };
 		AFDEEA9F1E62201700C055BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEA9E1E62201700C055BC /* ViewController.swift */; };
-		AFDEEAA21E62201700C055BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDEEAA01E62201700C055BC /* Main.storyboard */; };
 		AFDEEAA41E62201700C055BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFDEEAA31E62201700C055BC /* Assets.xcassets */; };
 		AFDEEAA71E62201700C055BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDEEAA51E62201700C055BC /* LaunchScreen.storyboard */; };
 		AFDEEAB21E62201700C055BC /* VideoCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEAB11E62201700C055BC /* VideoCameraTests.swift */; };
 		AFDEEABD1E62201700C055BC /* VideoCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEABC1E62201700C055BC /* VideoCameraUITests.swift */; };
+		AFDEEACB1E62204300C055BC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDEEACA1E62204300C055BC /* ViewController.xib */; };
+		AFDEEAE01E62262B00C055BC /* AVCaptureDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADA1E62262B00C055BC /* AVCaptureDevice+Extensions.swift */; };
+		AFDEEAE11E62262B00C055BC /* AVCaptureDeviceInput+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADB1E62262B00C055BC /* AVCaptureDeviceInput+Extensions.swift */; };
+		AFDEEAE21E62262B00C055BC /* AVCaptureSession+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADC1E62262B00C055BC /* AVCaptureSession+Extensions.swift */; };
+		AFDEEAE31E62262B00C055BC /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADD1E62262B00C055BC /* Result.swift */; };
+		AFDEEAE41E62262B00C055BC /* VideoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADE1E62262B00C055BC /* VideoCamera.swift */; };
+		AFDEEAE51E62262B00C055BC /* VideoCameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDEEADF1E62262B00C055BC /* VideoCameraError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +43,6 @@
 		AFDEEA991E62201700C055BC /* VideoCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDEEA9C1E62201700C055BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFDEEA9E1E62201700C055BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AFDEEAA11E62201700C055BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFDEEAA31E62201700C055BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFDEEAA61E62201700C055BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFDEEAA81E62201700C055BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		AFDEEAB81E62201700C055BC /* VideoCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDEEABC1E62201700C055BC /* VideoCameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraUITests.swift; sourceTree = "<group>"; };
 		AFDEEABE1E62201700C055BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFDEEACA1E62204300C055BC /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		AFDEEADA1E62262B00C055BC /* AVCaptureDevice+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Extensions.swift"; sourceTree = "<group>"; };
+		AFDEEADB1E62262B00C055BC /* AVCaptureDeviceInput+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureDeviceInput+Extensions.swift"; sourceTree = "<group>"; };
+		AFDEEADC1E62262B00C055BC /* AVCaptureSession+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureSession+Extensions.swift"; sourceTree = "<group>"; };
+		AFDEEADD1E62262B00C055BC /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		AFDEEADE1E62262B00C055BC /* VideoCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCamera.swift; sourceTree = "<group>"; };
+		AFDEEADF1E62262B00C055BC /* VideoCameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +111,8 @@
 			children = (
 				AFDEEA9C1E62201700C055BC /* AppDelegate.swift */,
 				AFDEEA9E1E62201700C055BC /* ViewController.swift */,
-				AFDEEAA01E62201700C055BC /* Main.storyboard */,
+				AFDEEACA1E62204300C055BC /* ViewController.xib */,
+				AFDEEAD81E62262B00C055BC /* VideoCamera */,
 				AFDEEAA31E62201700C055BC /* Assets.xcassets */,
 				AFDEEAA51E62201700C055BC /* LaunchScreen.storyboard */,
 				AFDEEAA81E62201700C055BC /* Info.plist */,
@@ -123,6 +136,27 @@
 				AFDEEABE1E62201700C055BC /* Info.plist */,
 			);
 			path = VideoCameraUITests;
+			sourceTree = "<group>";
+		};
+		AFDEEAD81E62262B00C055BC /* VideoCamera */ = {
+			isa = PBXGroup;
+			children = (
+				AFDEEAD91E62262B00C055BC /* Extensions */,
+				AFDEEADD1E62262B00C055BC /* Result.swift */,
+				AFDEEADE1E62262B00C055BC /* VideoCamera.swift */,
+				AFDEEADF1E62262B00C055BC /* VideoCameraError.swift */,
+			);
+			path = VideoCamera;
+			sourceTree = "<group>";
+		};
+		AFDEEAD91E62262B00C055BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AFDEEADA1E62262B00C055BC /* AVCaptureDevice+Extensions.swift */,
+				AFDEEADB1E62262B00C055BC /* AVCaptureDeviceInput+Extensions.swift */,
+				AFDEEADC1E62262B00C055BC /* AVCaptureSession+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +222,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Alfie Hanssen";
 				TargetAttributes = {
 					AFDEEA981E62201600C055BC = {
@@ -236,8 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFDEEAA71E62201700C055BC /* LaunchScreen.storyboard in Resources */,
+				AFDEEACB1E62204300C055BC /* ViewController.xib in Resources */,
 				AFDEEAA41E62201700C055BC /* Assets.xcassets in Resources */,
-				AFDEEAA21E62201700C055BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +296,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFDEEAE31E62262B00C055BC /* Result.swift in Sources */,
 				AFDEEA9F1E62201700C055BC /* ViewController.swift in Sources */,
+				AFDEEAE41E62262B00C055BC /* VideoCamera.swift in Sources */,
+				AFDEEAE51E62262B00C055BC /* VideoCameraError.swift in Sources */,
+				AFDEEAE01E62262B00C055BC /* AVCaptureDevice+Extensions.swift in Sources */,
+				AFDEEAE21E62262B00C055BC /* AVCaptureSession+Extensions.swift in Sources */,
+				AFDEEAE11E62262B00C055BC /* AVCaptureDeviceInput+Extensions.swift in Sources */,
 				AFDEEA9D1E62201700C055BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,14 +339,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AFDEEAA01E62201700C055BC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AFDEEAA11E62201700C055BC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AFDEEAA51E62201700C055BC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -336,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -385,6 +418,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -512,6 +546,7 @@
 				AFDEEAC31E62201700C055BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFDEEAC41E62201700C055BC /* Build configuration list for PBXNativeTarget "VideoCameraTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +555,7 @@
 				AFDEEAC61E62201700C055BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFDEEAC71E62201700C055BC /* Build configuration list for PBXNativeTarget "VideoCameraUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +564,7 @@
 				AFDEEAC91E62201700C055BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

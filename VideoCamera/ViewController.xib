@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="VideoCamera" customModuleProvider="target">
+            <connections>
+                <outlet property="swapButton" destination="ske-u8-VaK" id="g24-XE-2cO"/>
+                <outlet property="view" destination="iN0-l3-epB" id="2FU-XK-bRB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ske-u8-VaK">
+                    <color key="backgroundColor" red="0.95951487801830038" green="0.57640901651585785" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="YdT-Zf-f0u"/>
+                        <constraint firstAttribute="height" constant="30" id="f3S-9v-8GD"/>
+                    </constraints>
+                    <state key="normal" title="Swap">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSwapWithSender:" destination="-1" eventType="touchUpInside" id="zem-al-SSC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ske-u8-VaK" secondAttribute="trailing" constant="15" id="9HH-dx-s2n"/>
+                <constraint firstAttribute="bottom" secondItem="ske-u8-VaK" secondAttribute="bottom" constant="15" id="yr7-ND-Rme"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
