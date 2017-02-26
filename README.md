@@ -13,7 +13,7 @@ Coming soon...
 
 Clone the repo: 
 
-`git@github.com:alfiehanssen/VideoCamera.git`
+`git clone git@github.com:alfiehanssen/VideoCamera.git`
 
 Prepare pods: 
 
