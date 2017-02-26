@@ -1,5 +1,5 @@
 //
-//  VideoCamera.swift
+//  Camera.swift
 //  VideoCamera
 //
 //  Created by Alfred Hanssen on 2/25/17.
@@ -9,17 +9,17 @@
 import Foundation
 import AVFoundation
 
-protocol VideoCameraDelegate: class
+protocol CameraDelegate: class
 {
     func captureOutputDidDrop(sampleBuffer: CMSampleBuffer)
     func captureOutputDidOutput(sampleBuffer: CMSampleBuffer)
 }
 
-class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
+class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 {
     let captureSession = AVCaptureSession()
 
-    weak var delegate: VideoCameraDelegate?
+    weak var delegate: CameraDelegate?
     
     private var frontCameraInput: AVCaptureDeviceInput!
     private var backCameraInput: AVCaptureDeviceInput!
@@ -46,7 +46,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
-        VideoCamera.CaptureSessionQueue.async { [weak self] in
+        Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
                 return
@@ -73,7 +73,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
-        VideoCamera.CaptureSessionQueue.async { [weak self] in
+        Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
                 return
@@ -92,7 +92,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
-        VideoCamera.CaptureSessionQueue.async { [weak self] in
+        Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
                 return
@@ -111,7 +111,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
-        VideoCamera.CaptureSessionQueue.async { [weak self] in
+        Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
                 return
@@ -130,7 +130,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
                 else
                 {
                     assertionFailure("Capture session inputs are misconfigured.")
-                    throw VideoCameraError.misconfiguredInputs
+                    throw CameraError.misconfiguredInputs
                 }
             }
             catch let error
@@ -146,18 +146,18 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     
     private func prepare(initialCameraPosition: AVCaptureDevicePosition) throws
     {
-        __dispatch_assert_queue(VideoCamera.CaptureSessionQueue)
+        __dispatch_assert_queue(Camera.CaptureSessionQueue)
         
         let typeAudio = AVMediaTypeAudio
         guard AVCaptureDevice.authorizationStatus(forMediaType: typeAudio) == .authorized else
         {
-            throw VideoCameraError.notAuthorized(forMediaType: typeAudio)
+            throw CameraError.notAuthorized(forMediaType: typeAudio)
         }
 
         let typeVideo = AVMediaTypeVideo
         guard AVCaptureDevice.authorizationStatus(forMediaType: typeVideo) == .authorized else
         {
-            throw VideoCameraError.notAuthorized(forMediaType: typeVideo)
+            throw CameraError.notAuthorized(forMediaType: typeVideo)
         }
         
         self.captureSession.beginConfiguration()
@@ -178,13 +178,13 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         let videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.videoSettings = nil
-        videoDataOutput.setSampleBufferDelegate(self, queue: VideoCamera.VideoDataOutputQueue)
+        videoDataOutput.setSampleBufferDelegate(self, queue: Camera.VideoDataOutputQueue)
         try self.captureSession.addOutput(output: videoDataOutput)
     }
     
     private func activateCamera(position: AVCaptureDevicePosition) throws
     {
-        __dispatch_assert_queue(VideoCamera.CaptureSessionQueue)
+        __dispatch_assert_queue(Camera.CaptureSessionQueue)
         
         self.captureSession.beginConfiguration()
         defer
@@ -202,7 +202,7 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
             
         case .unspecified:
             assertionFailure("Attempt to switch to .unspecified device position.")
-            throw VideoCameraError.inputPositionUnspecified
+            throw CameraError.inputPositionUnspecified
         }
     }
 
@@ -210,21 +210,21 @@ class VideoCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
     {
-        VideoCamera.VideoDataOutputQueue.async { [weak self] in
+        Camera.VideoDataOutputQueue.async { [weak self] in
             self?.delegate?.captureOutputDidDrop(sampleBuffer: sampleBuffer)
         }
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
     {
-        VideoCamera.VideoDataOutputQueue.async { [weak self] in
+        Camera.VideoDataOutputQueue.async { [weak self] in
             self?.delegate?.captureOutputDidOutput(sampleBuffer: sampleBuffer)
         }
     }
 }
 
 // TODO: Should this be a class instead of an extension?
-extension VideoCamera
+extension Camera
 {
     // MARK: - Observers
 
@@ -233,17 +233,17 @@ extension VideoCamera
         __dispatch_assert_queue(DispatchQueue.main) // TODO: We don't know that this is going to be invoked on the main thread.
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(VideoCamera.captureSessionRuntimeError(notification:)),
+                                               selector: #selector(Camera.captureSessionRuntimeError(notification:)),
                                                name: .AVCaptureSessionRuntimeError,
                                                object: nil)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(VideoCamera.captureSessionWasInterrupted(notification:)),
+                                               selector: #selector(Camera.captureSessionWasInterrupted(notification:)),
                                                name: .AVCaptureSessionWasInterrupted,
                                                object: nil)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(VideoCamera.captureSessionInterruptionEnded(notification:)),
+                                               selector: #selector(Camera.captureSessionInterruptionEnded(notification:)),
                                                name: .AVCaptureSessionInterruptionEnded,
                                                object: nil)
     }

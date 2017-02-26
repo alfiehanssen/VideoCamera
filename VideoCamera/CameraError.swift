@@ -1,5 +1,5 @@
 //
-//  VideoCameraError.swift
+//  CameraError.swift
 //  VideoCamera
 //
 //  Created by Alfred Hanssen on 2/25/17.
@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-enum VideoCameraError: Error
+enum CameraError: Error
 {
     case notAuthorized(forMediaType: String)
     case cannotSetPreset(preset: String)

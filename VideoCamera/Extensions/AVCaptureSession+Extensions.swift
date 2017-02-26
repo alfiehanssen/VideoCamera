@@ -15,7 +15,7 @@ extension AVCaptureSession
     {
         guard self.canSetSessionPreset(preset) else
         {
-            throw VideoCameraError.cannotSetPreset(preset: preset)
+            throw CameraError.cannotSetPreset(preset: preset)
         }
         
         self.sessionPreset = preset
@@ -32,7 +32,7 @@ extension AVCaptureSession
     {
         guard self.canAddInput(input) else
         {
-            throw VideoCameraError.cannotAddInput(input: input)
+            throw CameraError.cannotAddInput(input: input)
         }
         
         self.addInput(input)
@@ -42,7 +42,7 @@ extension AVCaptureSession
     {
         guard self.canAddOutput(output) else
         {
-            throw VideoCameraError.cannotAddOutput(output: output)
+            throw CameraError.cannotAddOutput(output: output)
         }
         
         self.addOutput(output)

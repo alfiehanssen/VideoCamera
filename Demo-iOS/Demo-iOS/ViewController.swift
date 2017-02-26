@@ -8,12 +8,13 @@
 
 import UIKit
 import AVFoundation
+import VideoCamera
 
 class ViewController: UIViewController
 {
     @IBOutlet weak var swapButton: UIButton!
     
-    private let camera = VideoCamera()
+    private let camera = Camera()
     
     override func viewDidLoad()
     {

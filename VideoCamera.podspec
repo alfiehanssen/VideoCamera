@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                     A simple video camera for iOS. Built primarily for rapid prototyping of video camera-realted ideas.
                    DESC
 
-  s.homepage     = "http://alfiehanssen.com" #"https://github.com/alfiehanssen/VideoCamera"
+  s.homepage     = "https://github.com/alfiehanssen/VideoCamera"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

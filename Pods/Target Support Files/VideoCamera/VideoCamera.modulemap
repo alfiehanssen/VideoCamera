@@ -1,0 +1,6 @@
+framework module VideoCamera {
+  umbrella header "VideoCamera-umbrella.h"
+
+  export *
+  module * { export * }
+}

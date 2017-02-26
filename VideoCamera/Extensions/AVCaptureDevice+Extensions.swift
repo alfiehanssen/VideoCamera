@@ -36,7 +36,7 @@ extension AVCaptureDevice
         
         guard let device = discoverySession?.devices.first else
         {
-            throw VideoCameraError.discoverySessionFoundNoEligibleDevices
+            throw CameraError.discoverySessionFoundNoEligibleDevices
         }
         
         return device
