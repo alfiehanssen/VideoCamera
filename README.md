@@ -9,4 +9,24 @@ Coming soon...
 
 ###Usage
 
-Coming soon...
+####To build the demo
+
+Clone the repo: 
+
+`git@github.com:alfiehanssen/VideoCamera.git`
+
+Prepare pods: 
+
+`pod install && pod update`
+
+Open the `VideoCamera.xcworkspace` and build the `Demo-iOS` target.
+
+💥💥💥 
+
+####To consume as a Cocoapod
+
+Add this to your podfile: 
+
+`pod 'VideoCamera', '0.0.1'`
+
+🌱🌱🌱 
