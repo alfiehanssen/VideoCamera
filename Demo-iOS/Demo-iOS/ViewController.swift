@@ -10,6 +10,8 @@ import UIKit
 import AVFoundation
 import VideoCamera
 
+typealias AuthorizationClosure = (_ accessGranted: Bool) -> Void
+
 class ViewController: UIViewController
 {
     @IBOutlet weak var swapButton: UIButton!
@@ -34,22 +36,35 @@ class ViewController: UIViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        
-        // TODO: Handle authorization better.
-        
-        self.authorize(mediaType: AVMediaTypeAudio)
-        self.authorize(mediaType: AVMediaTypeVideo)
-        
-        // TODO: Don't prepare more than once.
-    
-        self.camera.prepare(initialCameraPosition: .back) { (result) in
-            switch result
-            {
-            case .success:
-                self.camera.startRunning()
                 
-            case .failure(error: let error):
-                print(error)
+        self.authorize(mediaType: AVMediaTypeAudio) { (accessGranted) in
+            guard accessGranted else
+            {
+                print("Go to settings and grant access to the microphone.")
+                
+                return
+            }
+            
+            self.authorize(mediaType: AVMediaTypeVideo) { (accessGranted) in
+                guard accessGranted else
+                {
+                    print("Go to settings and grant access to the camera.")
+                    
+                    return
+                }
+                
+                // TODO: Don't prepare more than once.
+                
+                self.camera.prepare(initialCameraPosition: .back) { (result) in
+                    switch result
+                    {
+                    case .success:
+                        self.camera.startRunning()
+                        
+                    case .failure(error: let error):
+                        print(error)
+                    }
+                }   
             }
         }
     }
@@ -61,22 +76,19 @@ class ViewController: UIViewController
     
     // MARK: - Private API
     
-    private func authorize(mediaType: String)
+    private func authorize(mediaType: String, completion: @escaping AuthorizationClosure)
     {
         switch AVCaptureDevice.authorizationStatus(forMediaType: mediaType)
         {
         case .authorized:
-            break
+            completion(true)
             
         case .notDetermined:
             AVCaptureDevice.requestAccess(forMediaType: mediaType, completionHandler: { (accessGranted) in
-                if !accessGranted
-                {
-                    print("Go to settings and authorize \(mediaType).")
-                }
+                completion(accessGranted)
             })
         case .denied, .restricted:
-            print("Go to settings and authorize \(mediaType).")
+            completion(false)
         }
     }
     

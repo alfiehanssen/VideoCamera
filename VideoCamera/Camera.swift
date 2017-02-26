@@ -44,8 +44,6 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 
     public func prepare(initialCameraPosition: AVCaptureDevicePosition, completion: @escaping ResultClosure)
     {
-        __dispatch_assert_queue(DispatchQueue.main)
-        
         Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
@@ -56,23 +54,17 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
             {
                 try strongSelf.prepare(initialCameraPosition: initialCameraPosition)
                 
-                DispatchQueue.main.async {
-                    completion(Result.success)
-                }
+                completion(Result.success)
             }
             catch let error
             {
-                DispatchQueue.main.async {
-                    completion(Result.failure(error: error))
-                }
+                completion(Result.failure(error: error))
             }
         }
     }
     
     public func startRunning()
     {
-        __dispatch_assert_queue(DispatchQueue.main)
-        
         Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
@@ -90,8 +82,6 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 
     public func stopRunning()
     {
-        __dispatch_assert_queue(DispatchQueue.main)
-        
         Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
@@ -109,8 +99,6 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     
     public func toggleCameraPosition(completion: @escaping ResultClosure)
     {
-        __dispatch_assert_queue(DispatchQueue.main)
-        
         Camera.CaptureSessionQueue.async { [weak self] in
             guard let strongSelf = self else
             {
@@ -132,12 +120,12 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
                     assertionFailure("Capture session inputs are misconfigured.")
                     throw CameraError.misconfiguredInputs
                 }
+                
+                completion(Result.success)
             }
             catch let error
             {
-                DispatchQueue.main.async {
-                    completion(Result.failure(error: error))
-                }
+                completion(Result.failure(error: error))
             }
         }
     }
@@ -224,7 +212,7 @@ public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 }
 
 // TODO: Should this be a class instead of an extension?
-extension Camera
+fileprivate extension Camera
 {
     // MARK: - Observers
 
@@ -248,6 +236,7 @@ extension Camera
                                                object: nil)
     }
     
+    
     fileprivate func removeObservers()
     {
         __dispatch_assert_queue(DispatchQueue.main)
@@ -257,18 +246,18 @@ extension Camera
         NotificationCenter.default.removeObserver(self, name: .AVCaptureSessionInterruptionEnded, object: nil)
     }
     
-    func captureSessionRuntimeError(notification: Notification)
+    @objc private func captureSessionRuntimeError(notification: Notification)
     {
         print("capture session runtime error")
     }
     
     // TODO: What happens if authorization is revoked mid capture?
-    func captureSessionWasInterrupted(notification: Notification)
+    @objc private func captureSessionWasInterrupted(notification: Notification)
     {
         print("capture session was interrupted")
     }
     
-    func captureSessionInterruptionEnded(notification: Notification)
+    @objc private func captureSessionInterruptionEnded(notification: Notification)
     {
         print("capture session interruption ended")
     }
