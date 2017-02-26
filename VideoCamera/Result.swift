@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum Result
+public enum Result
 {
     case success
     case failure(error: Error)
 }
 
-typealias ResultClosure = (_ result: Result) -> Void
+public typealias ResultClosure = (_ result: Result) -> Void
 

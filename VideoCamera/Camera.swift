@@ -9,17 +9,17 @@
 import Foundation
 import AVFoundation
 
-protocol CameraDelegate: class
+public protocol CameraDelegate: class
 {
     func captureOutputDidDrop(sampleBuffer: CMSampleBuffer)
     func captureOutputDidOutput(sampleBuffer: CMSampleBuffer)
 }
 
-class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
+public class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
 {
-    let captureSession = AVCaptureSession()
+    public let captureSession = AVCaptureSession()
 
-    weak var delegate: CameraDelegate?
+    public weak var delegate: CameraDelegate?
     
     private var frontCameraInput: AVCaptureDeviceInput!
     private var backCameraInput: AVCaptureDeviceInput!
@@ -27,7 +27,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     private static let CaptureSessionQueue = DispatchQueue(label: "com.videocamera.capturesessionqueue", qos: .default) // TODO: Proper qos?
     private static let VideoDataOutputQueue = DispatchQueue(label: "com.videocamera.videodataoutputqueue", qos: .default) // TODO: Proper qos?
     
-    override init()
+    public override init()
     {
         super.init()
         
@@ -42,7 +42,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     
     // MARK: - Public API
 
-    func prepare(initialCameraPosition: AVCaptureDevicePosition, completion: @escaping ResultClosure)
+    public func prepare(initialCameraPosition: AVCaptureDevicePosition, completion: @escaping ResultClosure)
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
@@ -69,7 +69,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
     }
     
-    func startRunning()
+    public func startRunning()
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
@@ -88,7 +88,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
     }
 
-    func stopRunning()
+    public func stopRunning()
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
@@ -107,7 +107,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
     }
     
-    func toggleCameraPosition(completion: @escaping ResultClosure)
+    public func toggleCameraPosition(completion: @escaping ResultClosure)
     {
         __dispatch_assert_queue(DispatchQueue.main)
         
@@ -142,6 +142,22 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         }
     }
     
+    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+    
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
+    {
+        Camera.VideoDataOutputQueue.async { [weak self] in
+            self?.delegate?.captureOutputDidDrop(sampleBuffer: sampleBuffer)
+        }
+    }
+    
+    public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
+    {
+        Camera.VideoDataOutputQueue.async { [weak self] in
+            self?.delegate?.captureOutputDidOutput(sampleBuffer: sampleBuffer)
+        }
+    }
+
     // MARK: - Private API
     
     private func prepare(initialCameraPosition: AVCaptureDevicePosition) throws
@@ -203,22 +219,6 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         case .unspecified:
             assertionFailure("Attempt to switch to .unspecified device position.")
             throw CameraError.inputPositionUnspecified
-        }
-    }
-
-    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
-    {
-        Camera.VideoDataOutputQueue.async { [weak self] in
-            self?.delegate?.captureOutputDidDrop(sampleBuffer: sampleBuffer)
-        }
-    }
-    
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!)
-    {
-        Camera.VideoDataOutputQueue.async { [weak self] in
-            self?.delegate?.captureOutputDidOutput(sampleBuffer: sampleBuffer)
         }
     }
 }
