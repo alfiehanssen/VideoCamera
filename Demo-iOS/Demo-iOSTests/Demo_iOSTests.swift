@@ -1,15 +1,15 @@
 //
-//  VideoCameraTests.swift
-//  VideoCameraTests
+//  Demo_iOSTests.swift
+//  Demo-iOSTests
 //
 //  Created by Alfred Hanssen on 2/25/17.
 //  Copyright © 2017 Alfie Hanssen. All rights reserved.
 //
 
 import XCTest
-@testable import VideoCamera
+@testable import Demo_iOS
 
-class VideoCameraTests: XCTestCase {
+class Demo_iOSTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

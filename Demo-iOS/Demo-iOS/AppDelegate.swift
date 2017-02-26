@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  VideoCamera
+//  Demo-iOS
 //
 //  Created by Alfred Hanssen on 2/25/17.
 //  Copyright © 2017 Alfie Hanssen. All rights reserved.
