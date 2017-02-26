@@ -1,0 +1,16 @@
+PODS:
+  - VideoCamera (0.0.1)
+
+DEPENDENCIES:
+  - VideoCamera (from `./`)
+
+EXTERNAL SOURCES:
+  VideoCamera:
+    :path: ./
+
+SPEC CHECKSUMS:
+  VideoCamera: 0c75798267eed57141599fe4f0f176cccc2dd6ef
+
+PODFILE CHECKSUM: 379e09b800467cd7eb44e169eab1f75450e064d1
+
+COCOAPODS: 1.1.1

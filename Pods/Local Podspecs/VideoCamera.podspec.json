@@ -1,0 +1,32 @@
+{
+  "name": "VideoCamera",
+  "version": "0.0.1",
+  "summary": "A simple video camera for iOS.",
+  "description": "A simple video camera for iOS. Built primarily for rapid prototyping of video camera-realted ideas.",
+  "homepage": "https://github.com/alfiehanssen/VideoCamera",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Alfie Hanssen": "alfiehanssen@gmail.com"
+  },
+  "social_media_url": "http://alfiehanssen.com",
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source": {
+    "git": "https://github.com/alfiehanssen/VideoCamera.git",
+    "tag": "0.0.1"
+  },
+  "source_files": [
+    "VideoCamera",
+    "VideoCamera/**/*.{swift}"
+  ],
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "AVFoundation"
+  ],
+  "requires_arc": true
+}
